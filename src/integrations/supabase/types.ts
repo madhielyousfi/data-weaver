@@ -14,7 +14,146 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      connections: {
+        Row: {
+          category: string
+          config: Json
+          connector_type: string
+          created_at: string
+          id: string
+          name: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          config?: Json
+          connector_type: string
+          created_at?: string
+          id?: string
+          name: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          config?: Json
+          connector_type?: string
+          created_at?: string
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      pipeline_runs: {
+        Row: {
+          duration_ms: number | null
+          error: string | null
+          finished_at: string | null
+          id: string
+          logs: Json | null
+          pipeline_id: string
+          rows_processed: number | null
+          started_at: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          duration_ms?: number | null
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          logs?: Json | null
+          pipeline_id: string
+          rows_processed?: number | null
+          started_at?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          duration_ms?: number | null
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          logs?: Json | null
+          pipeline_id?: string
+          rows_processed?: number | null
+          started_at?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pipeline_runs_pipeline_id_fkey"
+            columns: ["pipeline_id"]
+            isOneToOne: false
+            referencedRelation: "pipelines"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pipelines: {
+        Row: {
+          created_at: string
+          description: string | null
+          graph: Json
+          id: string
+          name: string
+          schedule: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          graph?: Json
+          id?: string
+          name: string
+          schedule?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          graph?: Json
+          id?: string
+          name?: string
+          schedule?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
