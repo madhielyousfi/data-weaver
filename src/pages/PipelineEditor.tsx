@@ -45,7 +45,7 @@ const Inner = ({ pipeline, onSaved }: { pipeline: any; onSaved: () => void }) =>
   const save = async () => {
     setSaving(true);
     const { error } = await supabase.from("pipelines").update({
-      name, graph: { nodes, edges }, status: nodes.length > 0 ? "active" : "draft",
+      name, graph: { nodes, edges } as any, status: nodes.length > 0 ? "active" : "draft",
     }).eq("id", pipeline.id);
     setSaving(false);
     if (error) toast.error(error.message); else { toast.success("Saved"); onSaved(); }
